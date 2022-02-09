@@ -48,14 +48,20 @@ db.airlist.find({$and: [{'address.country_code' :"US"},{'review_scores.review_sc
 ```
 - 5. 3. 
 ```js
-    
+    db.airlist.aggregate([
+        {$match : {$and:[{'reviews._id' : '167966847'},{'reviews.reviewer_name' : 'Cristiane'}]}},
+        {$project : {'reviews._id':1,'reviews.reviewer_name':1}}
+    ])
 ```
 - 5. 4. 
 ```js
-    
+     db.airlist.aggregate([
+        {$match : {$and:[{'reviews._id' : '167966847'},{'reviews.reviewer_name' : 'Cristiane'}]}},
+        {$project : {'reviews._id':1,'reviews.reviewer_name':1}}
+    ])
 ```
 
 - 6. 
 ```js
-
+    db.airlist.find().sort({'review_scores.review_scores_rating':1,'address.country_code':1})
 ```
